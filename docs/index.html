@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ผลงาน Computer Game Development</title>
+  <style>
+    :root {
+      --bg: #0b132b;
+      --surface: rgba(255, 255, 255, 0.08);
+      --text: #f8f9fa;
+      --accent: #4fd1c5;
+      --accent-2: #7f5af0;
+      --muted: #cbd5e1;
+      --shadow: 0 20px 80px rgba(0, 0, 0, 0.25);
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      min-height: 100vh;
+      font-family: "Sarabun", Arial, sans-serif;
+      color: var(--text);
+      background: radial-gradient(circle at top, rgba(79, 209, 197, 0.18), transparent 25%),
+                  radial-gradient(circle at bottom right, rgba(127, 90, 240, 0.16), transparent 20%),
+                  linear-gradient(150deg, #0b132b 0%, #121a3b 100%);
+    }
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 40px 24px;
+    }
+    header {
+      padding: 32px 24px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.04);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+      margin-bottom: 32px;
+    }
+    header h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.05;
+      margin-bottom: 16px;
+    }
+    header p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.8;
+      max-width: 760px;
+    }
+    .card {
+      display: grid;
+      gap: 18px;
+      padding: 28px 28px 22px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 26px;
+      box-shadow: var(--shadow);
+    }
+    .card h2 {
+      font-size: 1.6rem;
+      margin-bottom: 12px;
+    }
+    .lab-list {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+    }
+    .lab-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 22px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 18px;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+    .lab-item:hover {
+      transform: translateY(-3px);
+      background: rgba(79, 209, 197, 0.12);
+    }
+    .lab-item span {
+      font-weight: 600;
+      color: var(--text);
+    }
+    .lab-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 700;
+    }
+    .lab-link:hover {
+      color: var(--accent-2);
+    }
+    .footer {
+      margin-top: 30px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>ผลงานวิชา Computer Game Development</h1>
+      <p>ยินดีต้อนรับสู่หน้ารวบรวมผลงานของนายรัชชานนท์ เรืองจรัส ในรายวิชา Computer Game Development โดยจัดแสดงโปรเจกต์จาก lab1 ถึง lab6 ในรูปแบบทันสมัย เรียบหรู และใช้งานง่าย</p>
+    </header>
+
+    <section class="card">
+      <h2>รายการ Lab</h2>
+      <ul class="lab-list">
+        <li class="lab-item"><span>Lab 1</span><a class="lab-link" href="lab01.html">ไปยัง Lab 1</a></li>
+        <li class="lab-item"><span>Lab 2</span><span>กำลังพัฒนา</span></li>
+        <li class="lab-item"><span>Lab 3</span><span>กำลังพัฒนา</span></li>
+        <li class="lab-item"><span>Lab 4</span><span>กำลังพัฒนา</span></li>
+        <li class="lab-item"><span>Lab 5</span><span>กำลังพัฒนา</span></li>
+        <li class="lab-item"><span>Lab 6</span><span>กำลังพัฒนา</span></li>
+      </ul>
+    </section>
+
+    <div class="footer">จัดทำโดย รัชชานนท์ เรืองจรัส | วิชา Computer Game Development</div>
+  </div>
+</body>
+</html>
