@@ -3,16 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ผลงาน Computer Game Development</title>
+  <title>Computer Game Development</title>
   <style>
     :root {
-      --bg: #0b132b;
-      --surface: rgba(255, 255, 255, 0.08);
-      --text: #f8f9fa;
-      --accent: #4fd1c5;
-      --accent-2: #7f5af0;
-      --muted: #cbd5e1;
-      --shadow: 0 20px 80px rgba(0, 0, 0, 0.25);
+      /* ชุดสีดึงมาจากธีม Wooden Chess: ครีมอุ่น + น้ำตาลไม้ + ส้มเน้น + กรอบดำหนา */
+      --bg: #f3e3c7;
+      --surface: #fbf1de;
+      --text: #2c1c0e;
+      --muted: #6b5138;
+      --accent: #e07a2c;
+      --accent-dark: #b85e1d;
+      --wood-dark: #7a4a24;
+      --wood-light: #d9b98c;
+      --border: #221407;
+      --shadow-offset: 6px;
     }
     * {
       box-sizing: border-box;
@@ -21,11 +25,12 @@
     }
     body {
       min-height: 100vh;
-      font-family: "Sarabun", Arial, sans-serif;
+      font-family: "Courier New", "Consolas", monospace;
       color: var(--text);
-      background: radial-gradient(circle at top, rgba(79, 209, 197, 0.18), transparent 25%),
-                  radial-gradient(circle at bottom right, rgba(127, 90, 240, 0.16), transparent 20%),
-                  linear-gradient(150deg, #0b132b 0%, #121a3b 100%);
+      background: var(--bg);
+      background-image:
+        radial-gradient(circle at 10% 10%, rgba(217,185,140,0.35), transparent 30%),
+        radial-gradient(circle at 90% 20%, rgba(122,74,36,0.15), transparent 25%);
     }
     .container {
       max-width: 980px;
@@ -33,37 +38,43 @@
       padding: 40px 24px;
     }
     header {
-      padding: 32px 24px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 28px;
-      background: rgba(255, 255, 255, 0.04);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(12px);
+      padding: 28px 26px;
+      border: 3px solid var(--border);
+      border-radius: 10px;
+      background: var(--surface);
+      box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--border);
       margin-bottom: 32px;
     }
     header h1 {
-      font-size: clamp(2rem, 4vw, 3rem);
-      line-height: 1.05;
-      margin-bottom: 16px;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      line-height: 1.15;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent);
+      text-shadow: 2px 2px 0 var(--border);
     }
     header p {
       color: var(--muted);
-      font-size: 1.05rem;
+      font-size: 1rem;
       line-height: 1.8;
       max-width: 760px;
     }
     .card {
       display: grid;
       gap: 18px;
-      padding: 28px 28px 22px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 26px;
-      box-shadow: var(--shadow);
+      padding: 26px 26px 22px;
+      background: var(--surface);
+      border: 3px solid var(--border);
+      border-radius: 10px;
+      box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--border);
     }
     .card h2 {
-      font-size: 1.6rem;
-      margin-bottom: 12px;
+      font-size: 1.3rem;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--wood-dark);
     }
     .lab-list {
       list-style: none;
@@ -74,48 +85,109 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 18px 22px;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 18px;
-      transition: transform 0.2s ease, background 0.2s ease;
+      padding: 16px 20px;
+      background: var(--wood-light);
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      transition: transform 0.15s ease, background 0.15s ease;
     }
     .lab-item:hover {
-      transform: translateY(-3px);
-      background: rgba(79, 209, 197, 0.12);
+      transform: translate(-2px, -2px);
+      box-shadow: 4px 4px 0 var(--border);
+      background: #e9cfa2;
     }
     .lab-item span {
-      font-weight: 600;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
       color: var(--text);
     }
     .lab-link {
-      color: var(--accent);
+      color: var(--accent-dark);
       text-decoration: none;
       font-weight: 700;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border: 2px solid var(--border);
+      border-radius: 6px;
+      background: var(--accent);
+      color: var(--surface);
+      box-shadow: 3px 3px 0 var(--border);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
     }
     .lab-link:hover {
-      color: var(--accent-2);
+      transform: translate(-2px, -2px);
+      box-shadow: 5px 5px 0 var(--border);
+      background: var(--accent-dark);
     }
+
+    /* Lab ที่มีหลายลิงก์ */
+    .lab-item.multi {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 12px;
+      background: var(--wood-light);
+    }
+    .lab-item.multi > .lab-item-title {
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text);
+    }
+    .sub-link-list {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+    .sub-link-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 14px;
+      background: var(--surface);
+      border: 2px solid var(--border);
+      border-radius: 6px;
+      transition: transform 0.15s ease;
+    }
+    .sub-link-item:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 3px 3px 0 var(--border);
+    }
+    .sub-link-item span {
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--wood-dark);
+    }
+
     .footer {
       margin-top: 30px;
       text-align: center;
       color: var(--muted);
-      font-size: 0.95rem;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
     }
   </style>
 </head>
 <body>
   <div class="container">
     <header>
-      <h1>ผลงานวิชา Computer Game Development</h1>
-      <p>ยินดีต้อนรับสู่หน้ารวบรวมผลงานของนายรัชชานนท์ เรืองจรัส ในรายวิชา Computer Game Development โดยจัดแสดงโปรเจกต์จาก lab1 ถึง lab6 ในรูปแบบทันสมัย เรียบหรู และใช้งานง่าย</p>
+      <h1>Computer Game Development</h1>
+      <p>ยินดีต้อนรับสู่หน้ารวบรวมผลงานของ นายรัชชานนท์ เรืองจรัส รหัสนักศึกษา 683380094-0 ในรายวิชา Computer Game Development โดยจัดแสดงโปรเจกต์จาก lab1 ถึง lab6</p>
     </header>
 
     <section class="card">
       <h2>รายการ Lab</h2>
       <ul class="lab-list">
         <li class="lab-item"><span>Lab 1</span><a class="lab-link" href="lab01.html">ไปยัง Lab 1</a></li>
-        <li class="lab-item"><span>Lab 2</span><span>กำลังพัฒนา</span></li>
+
+        <li class="lab-item multi">
+          <span class="lab-item-title">Lab 2</span>
+          <ul class="sub-link-list">
+            <li class="sub-link-item"><span>Lab 2.1</span><a class="lab-link" href="lab02/game21.html">ไปยัง Lab 2.1</a></li>
+            <li class="sub-link-item"><span>Lab 2.2</span><a class="lab-link" href="lab02/game22.html">ไปยัง Lab 2.2</a></li>
+          </ul>
+        </li>
+
         <li class="lab-item"><span>Lab 3</span><span>กำลังพัฒนา</span></li>
         <li class="lab-item"><span>Lab 4</span><span>กำลังพัฒนา</span></li>
         <li class="lab-item"><span>Lab 5</span><span>กำลังพัฒนา</span></li>
