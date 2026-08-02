@@ -13,8 +13,8 @@
 ---
 ## ภาพตัวอย่าง Demo(Lab04)
 
-<img src="docs/demo1.jpg" width="300">
-<img src="docs/demo2.jpg" width="300">
+<img src="docs/demo1.png" width="300">
+<img src="docs/demo2.png" width="300">
 
 ---
 
