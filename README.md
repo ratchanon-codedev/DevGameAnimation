@@ -26,6 +26,6 @@
 
 ## Play Game
 
-เล่นเกมได้โดยตรงผ่านเว็บเบราว์เซอร์ (Godot Web Export) ที่: [Play Game]([https://ใส่ชื่อผู้ใช้.github.io/ใส่ชื่อ-repo/](https://ratchanon-codedev.github.io/DevGameAnimation/))
+เล่นเกมได้โดยตรงผ่านเว็บเบราว์เซอร์ (Godot Web Export) ที่: [Play Game](https://ratchanon-codedev.github.io/DevGameAnimation/)
 
 ---
