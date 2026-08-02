@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab 4 - 2D Platformer Starter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-top: #eed9ba;
+    --bg-bottom: #f3e3c7;
+    --card-bg: #fbf1de;
+    --card-border: #221407;
+    --item-bg: #d9b98c;
+    --item-border: #221407;
+    --accent: #e07a2c;
+    --accent-border: #221407;
+    --accent-text: #fbf1de;
+    --text-dark: #2c1c0e;
+    --muted: #6b5138;
+    --shadow: #221407;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+  }
+
+  body {
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    font-weight: 700;
+    background: linear-gradient(160deg, var(--bg-top) 0%, var(--bg-bottom) 100%);
+    color: var(--text-dark);
+    padding: 40px 20px 60px;
+    line-height: 1.6;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  header, .card {
+    background: var(--card-bg);
+    border: 3px solid var(--card-border);
+    border-radius: 10px;
+    box-shadow: 6px 6px 0 var(--shadow);
+    padding: 28px 32px;
+    margin-bottom: 30px;
+  }
+
+  h1 {
+    color: var(--accent);
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin: 0 0 16px;
+    text-shadow: 2px 2px 0 var(--shadow);
+  }
+
+  header p {
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  h2 {
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--accent);
+    margin: 0 0 20px;
+  }
+
+  .back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    font-size: 0.7rem;
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 2px solid var(--muted);
+    padding-bottom: 2px;
+  }
+
+  .back-link:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .game-preview {
+    background: var(--item-bg);
+    border: 3px solid var(--item-border);
+    border-radius: 8px;
+    padding: 22px;
+  }
+
+  .game-preview .label {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 12px;
+  }
+
+  .game-desc {
+    font-size: 0.7rem;
+    color: var(--muted);
+    margin: 0 0 18px;
+    max-width: 560px;
+  }
+
+  /* --- splash / loader preview, restyled from Godot's export template --- */
+  #status {
+    background: #efe0bd;
+    border: 3px dashed var(--item-border);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 30px 20px;
+    margin-bottom: 20px;
+  }
+
+  #status-splash {
+    max-width: 220px;
+    max-height: 140px;
+    image-rendering: pixelated;
+    border: 3px solid var(--item-border);
+    border-radius: 6px;
+    background: #fff8e8;
+  }
+
+  #status-splash.missing {
+    width: 220px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6rem;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  #status-progress {
+    width: 70%;
+    height: 14px;
+    appearance: none;
+    border: 2px solid var(--item-border);
+    border-radius: 4px;
+    overflow: hidden;
+    background: #fff8e8;
+  }
+
+  #status-progress::-webkit-progress-bar {
+    background: #fff8e8;
+  }
+
+  #status-progress::-webkit-progress-value {
+    background: var(--accent);
+  }
+
+  #status-notice {
+    font-size: 0.65rem;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  .game-actions {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .play-btn {
+    background: var(--accent);
+    color: var(--accent-text);
+    border: 3px solid var(--accent-border);
+    border-radius: 6px;
+    padding: 12px 20px;
+    font-family: 'Courier Prime', 'Courier New', monospace;
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-size: 0.8rem;
+    text-decoration: none;
+    box-shadow: 4px 4px 0 var(--accent-border);
+    transition: transform 0.1s ease;
+    white-space: nowrap;
+  }
+
+  .play-btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--accent-border);
+  }
+
+  .play-btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 var(--accent-border);
+  }
+
+  .footer {
+    margin-top: 30px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.65rem;
+    letter-spacing: 0.5px;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <a class="back-link" href="../index.html">&larr; กลับหน้าหลัก</a>
+
+    <header>
+      <h1>LAB 4</h1>
+      <p>2D Platformer Starter - โปรเจกต์เกมแพลตฟอร์ม 2D ที่พัฒนาด้วย Godot Engine</p>
+    </header>
+
+    <section class="card">
+      <h2>รายละเอียด</h2>
+      <div class="game-preview">
+        <div class="label">2D Platformer Starter</div>
+        <p class="game-desc">เกมตัวอย่างแพลตฟอร์ม 2D สำหรับรายวิชา Computer Game Development พัฒนาด้วย Godot Engine และรันได้โดยตรงผ่านเว็บเบราว์เซอร์ (Godot Web Export)</p>
+
+        <div id="status">
+          <img id="status-splash" src="lab04/2D-Platformer-Starter.png" alt="2D Platformer Starter"
+               onerror="this.onerror=null;this.classList.add('missing');this.removeAttribute('src');this.alt='';this.insertAdjacentText('afterbegin','ตัวอย่างเกม');">
+          <progress id="status-progress" value="100" max="100"></progress>
+          <div id="status-notice">พร้อมเล่น — กดปุ่มด้านล่างเพื่อเริ่มเกม</div>
+        </div>
+
+        <div class="game-actions">
+          <a class="play-btn" href="lab04/2D-Platformer-Starter.html">▶ เล่นเกม</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">จัดทำโดย รัชชานนท์ เรืองจรัส | วิชา Computer Game Development</div>
+  </div>
+</body>
+</html>
